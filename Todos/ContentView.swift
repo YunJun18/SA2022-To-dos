@@ -9,18 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     @State var todos = [
-    Todo(title: "Watch some paw patrol"),
-    Todo(title: "Joining giveaways"),
-    Todo(title: "Do code")
+    Todo(title: "Watch some paw patrol📺", isCompleted: true),
+    Todo(title: "Look at slides💻", isCompleted: true),
+    Todo(title: "Joining giveaways🎁"),
+    Todo(title: "Do code👩🏻‍💻")
     ]
     
     var body: some View {
         //for todos in todo
         NavigationView {
             List(todos) { todo in
-                Text(todo.title)
+                HStack {
+                    Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
+                        .foregroundColor(.black)
+                    Text(todo.title)
+                }
             }
             .navigationTitle("Important SAP")
+            .foregroundColor(.blue)
         }
     }
 }
