@@ -1,32 +1,34 @@
-//
-//  ContentView.swift
-//  Todos
-//
-//  Created by T Krobot on 25/6/22.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    
     @State var todos = [
-    Todo(title: "Watch some paw patrol📺", isCompleted: true),
-    Todo(title: "Look at slides💻", isCompleted: true),
-    Todo(title: "Joining giveaways🎁"),
-    Todo(title: "Do code👩🏻‍💻")
+        Todo(title: "Watch some Paw Patrol", details: "Episodes 5 and 6", isCompleted: true),
+        Todo(title: "Conduct a giveaway"),
+        Todo(title: "Randomly deduct some points")
     ]
     
     var body: some View {
-        //for todos in todo
         NavigationView {
-            List(todos) { todo in
-                HStack {
-                    Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(.black)
-                    Text(todo.title)
+            List($todos) { $todo in
+                NavigationLink {
+                    TodoDetailView(todo: $todo)
+                } label: {
+                    HStack {
+                        Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
+                        VStack(alignment: .leading) {
+                            Text(todo.title)
+                                .strikethrough(todo.isCompleted)
+                            if !todo.details.isEmpty {
+                                Text(todo.details)
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
                 }
             }
-            .navigationTitle("Important SAP")
-            .foregroundColor(.blue)
+            .navigationTitle("Todos")
         }
     }
 }
