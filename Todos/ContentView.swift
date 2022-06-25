@@ -6,6 +6,7 @@ struct ContentView: View {
         Todo(title: "Watch some Paw Patrol", details: "Episodes 5 and 6", isCompleted: true),
         Todo(title: "Conduct a giveaway"),
         Todo(title: "Randomly deduct some points")
+        Todo(title: "Homework")
     ]
     
     var body: some View {
